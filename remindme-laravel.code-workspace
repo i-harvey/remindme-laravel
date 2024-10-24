@@ -1,0 +1,153 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "Root"
+    },
+    {
+      "path": "./src",
+      "name": "Backend"
+    },
+    {
+      "path": "./src/nuxt",
+      "name": "Frontend"
+    }
+  ],
+  "settings": {
+    "files.watcherExclude": {
+      "**/.git/objects/**": true,
+      "**/node_modules/**": true
+    },
+    "search.exclude": {
+      "**/.git": true,
+      "**/node_modules": true,
+      "**/package-lock.json": true,
+      "**/tmp": true
+    },
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "editor.formatOnSave": "explicit"
+    },
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+    "stylelint.enable": true,
+    "stylelint.validate": [
+      "css",
+      "scss"
+    ],
+    "[php]": {
+      "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+    },
+    "[css][scss]": {
+      "editor.defaultFormatter": "stylelint.vscode-stylelint",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "never",
+        "source.fixAll.stylelint": "explicit"
+      }
+    },
+    "[vue]": {
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "always",
+        "source.fixAll.stylelint": "always"
+      },
+      "editor.defaultFormatter": "Vue.volar"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features"
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "bmewburn.vscode-intelephense-client",
+      "dbaeumer.vscode-eslint",
+      "stylelint.vscode-stylelint",
+      "Vue.volar",
+      "heybourn.headwind",
+      "bradlc.vscode-tailwindcss",
+      "antfu.iconify"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "presentation": {
+      "echo": false,
+      "reveal": "always",
+      "focus": false,
+      "panel": "dedicated",
+      "showReuseMessage": true
+    },
+    "tasks": [
+      {
+        "label": "Open terminals",
+        "dependsOn": [
+          "Root",
+          "Backend",
+          "Frontend"
+        ],
+        "runOptions": {
+          "runOn": "folderOpen"
+        }
+      },
+      {
+        "label": "Root",
+        "type": "process",
+        "command": "",
+        "windows": {
+          "command": "PowerShell"
+        },
+        "isBackground": true,
+        "problemMatcher": [],
+        "presentation": {
+          "echo": false,
+          "focus": true,
+          "panel": "dedicated"
+        },
+        "options": {
+          "cwd": "."
+        },
+      },
+      {
+        "label": "Backend",
+        "type": "process",
+        "command": "",
+        "windows": {
+          "command": "PowerShell"
+        },
+        "isBackground": true,
+        "problemMatcher": [],
+        "presentation": {
+          "echo": false,
+          "focus": true,
+          "panel": "dedicated"
+        },
+        "options": {
+          "cwd": "./src"
+        },
+      },
+      {
+        "label": "Frontend",
+        "type": "process",
+        "command": "",
+        "windows": {
+          "command": "PowerShell"
+        },
+        "isBackground": true,
+        "problemMatcher": [],
+        "presentation": {
+          "echo": false,
+          "focus": true,
+          "panel": "dedicated"
+        },
+        "options": {
+          "cwd": "./src/nuxt"
+        },
+      }
+    ]
+  }
+}
