@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
     devtools: { enabled: true },
+    runtimeConfig: {
+        public: {
+            baseURL: 'http://localhost:8000'
+        }
+    },
     vite: {
         css: {
             preprocessorOptions: {
