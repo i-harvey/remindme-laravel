@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Exceptions\InvalidCredentialsHttpException;
+use App\Enums\TokenAbility;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -17,13 +19,32 @@ class AuthController extends Controller
         ]);
 
         if (!Auth::attempt($credentials)) {
-            throw new NotFoundHttpException;
+            throw new InvalidCredentialsHttpException;
         }
 
         $request->session()->regenerate();
 
+        /** @var User $user */
+        $user = Auth::user();
+
+        $user->tokens()->delete();
+
+        $atExpireTime = now()->addSeconds(config('sanctum.expiration'));
+
+        $accessToken = $user->createToken('access_token', [TokenAbility::ACCESS_API], $atExpireTime);
+        $refreshToken = $user->createToken('refresh_token', [TokenAbility::ISSUE_ACCESS_TOKEN]);
+
         return response()->json([
-            'user' => Auth::user()
+            'ok' => true,
+            'data' => [
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                ]
+            ],
+            'access_token' => $accessToken->plainTextToken,
+            'refresh_token' => $refreshToken->plainTextToken
         ]);
     }
 }

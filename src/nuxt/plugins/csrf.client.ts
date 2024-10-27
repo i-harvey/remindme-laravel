@@ -1,3 +1,4 @@
 export default defineNuxtPlugin(async () => {
-    await useApi('/sanctum/csrf-cookie', { credentials: 'include' });
+    const { fetch } = useApi();
+    await fetch('/sanctum/csrf-cookie', { credentials: 'include' });
 })

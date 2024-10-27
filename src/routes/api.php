@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Enums\TokenAbility;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,14 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/session', [AuthController::class, 'session'])->name('session');
 
-Route::post('/session', [AuthController::class, 'session']);
+$accessApiAbility = (TokenAbility::ACCESS_API->value);
+
+Route::middleware(['auth:sanctum', "abilities:{$accessApiAbility}"])->group(function () {
+    Route::post('/refresh-token', [AuthController::class, 'refresh'])->name('refresh');
+
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    })->name('getUser');
+});

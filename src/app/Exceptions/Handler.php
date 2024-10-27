@@ -48,6 +48,17 @@ class Handler extends ExceptionHandler
             }
         });
 
+        $this->renderable(function (InvalidCredentialsHttpException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'ok' => false,
+                    'err' => 'ERR_INVALID_CREDS',
+                    'msg' => 'incorrect username or password'
+                ], 401);
+            }
+        });
+
+
         $this->renderable(function (AccessDeniedHttpException $e, Request $request) {
             if ($request->is('api/*')) {
                 return response()->json([

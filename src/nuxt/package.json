@@ -10,14 +10,27 @@
     },
     "dependencies": {
         "@nuxt/fonts": "^0.10.2",
-        "@nuxtjs/tailwindcss": "^6.12.2",
+        "@nuxt/icon": "^1.5.8",
+        "@vee-validate/zod": "^4.14.5",
+        "@vueuse/core": "^11.1.0",
+        "lucide-vue-next": "^0.453.0",
         "nuxt": "^3.13.2",
+        "vee-validate": "^4.14.5",
         "vue": "latest",
-        "vue-router": "latest"
+        "vue-router": "latest",
+        "zod": "^3.23.8"
     },
     "devDependencies": {
+        "@formkit/auto-animate": "^0.8.2",
+        "@nuxtjs/tailwindcss": "^6.12.2",
         "axios": "^1.6.1",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.1.1",
+        "radix-vue": "^1.9.7",
         "sass": "^1.80.4",
-        "shadcn-nuxt": "^0.10.4"
+        "shadcn-nuxt": "^0.10.4",
+        "tailwind-merge": "^2.5.4",
+        "tailwindcss-animate": "^1.0.7",
+        "typescript": "^5.6.3"
     }
 }
