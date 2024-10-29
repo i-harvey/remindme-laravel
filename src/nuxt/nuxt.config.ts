@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
     devtools: { enabled: true },
+    runtimeConfig: {
+        public: {
+            baseURL: 'http://localhost:8000'
+        }
+    },
     vite: {
         css: {
             preprocessorOptions: {
@@ -11,7 +16,7 @@ export default defineNuxtConfig({
             }
         }
     },
-    modules: ['shadcn-nuxt', '@nuxt/fonts', '@nuxtjs/tailwindcss'],
+    modules: ['@nuxt/fonts', '@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxt/icon'],
     shadcn: {
         /**
          * Prefix for all the imported component
